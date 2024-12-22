@@ -35,16 +35,25 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Assign the default role (e.g., 'parent')
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'parent', // Default role
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
+        // Redirect based on role
+        if ($user->role === 'parent') {
+            return redirect(route('parent.dashboard'));
+        }
+
+        // Default redirect (e.g., dentist/admin)
         return redirect(route('dashboard', absolute: false));
     }
+
 }

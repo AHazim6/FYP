@@ -91,6 +91,15 @@
         footer {
             margin-top: auto;
         }
+        .checkbox-label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px; /* Space between items */
+            font-size: 14px;    /* Adjust font size if needed */
+        }
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 5px;  /* Space between checkbox and label */
+        }
     </style>
 </head>
 <body>
@@ -101,7 +110,7 @@
 <div class="container text-center my-5">
     <h1>Contact Us</h1>
     <div class="contact-form mx-auto col-md-6">
-        <form action="{{ route('contact.store') }}" method="post">
+        <form action="{{ route('send.email') }}" method="post">
             @csrf
             <label>1. Email</label>
             <input type="email" name="email" class="form-control mb-3" required>
@@ -109,16 +118,16 @@
             <label>2. Name</label>
             <input type="text" name="name" class="form-control mb-3" required>
 
-            <label>3. Subject</label><br>
-            <div class="mb-3">
-                <input type="checkbox" name="subject[]" value="Inquiry"> Inquiry<br>
-                <input type="checkbox" name="subject[]" value="Suggestion"> Suggestion<br>
-                <input type="checkbox" name="subject[]" value="Complaint"> Complaint<br>
-                <input type="checkbox" name="subject[]" value="Comment"> Comment<br>
-            </div>
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject">
+                <option value="Inquiry">Inquiry</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Comment">Comment</option>
+            </select><br><br>
 
-            <label>4. Message</label>
-            <textarea name="message" class="form-control mb-3" rows="5" required></textarea>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
 
             <button type="submit" class="btn btn-success">Send</button>
         </form>

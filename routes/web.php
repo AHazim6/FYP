@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ParentDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DashboardController;
@@ -21,14 +23,14 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact.us');
-Route::post('/contact-us', [App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+Route::get('/contact-us', [ContactController::class, 'contact'])->name('contact');
+Route::post('send-email', [ContactController::class, 'store'])->name('send.email');
+
 
 // Dashboard route, accessible to authenticated users
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/parent/dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
     Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
 
     // Profile routes
@@ -42,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/patients', PatientList::class)->name('patients.list');
     Route::get('/patients/create', AddPatient::class)->name('patients.add');
     Route::get('/patients/{patient}', ViewPatient::class)->name('patients.show');
+    Route::get('/children/{patient}', \App\Livewire\ChildView::class)->name('child.show');
     Route::get('/appointments', AppointmentForm::class)->name('appointments');
 });
 
