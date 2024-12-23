@@ -23,6 +23,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/services', function () {
+    return view('OurServices');
+});
+
 Route::get('/contact-us', [ContactController::class, 'contact'])->name('contact');
 Route::post('send-email', [ContactController::class, 'store'])->name('send.email');
 

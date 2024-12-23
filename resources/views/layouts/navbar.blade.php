@@ -20,7 +20,7 @@
                         <li><a class="dropdown-item" href="{{ asset('build/assets/form/Medical History.pdf') }}" download>Medical History Form</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#">Our Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="/services">Our Services</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact-us">Contact Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Log In</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Sign Up</a></li>
