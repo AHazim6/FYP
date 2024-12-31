@@ -11,4 +11,8 @@ class Treatment extends Model
 
     // Specify the fields that can be mass-assigned
     protected $fillable = ['name'];
+    public function medicalReports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MedicalReport::class);
+    }
 }

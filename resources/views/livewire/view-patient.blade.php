@@ -69,46 +69,42 @@
                 </tbody>
             </table>
         <!-- Continuation Reports -->
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="text-xl font-semibold mt-6">Continuation Medical Report</h3>
+            <div class="mt-8 flex items-center justify-between mb-4">
+
+                <h1 class="header-font text-lg font-bold">Continuation Medical Report</h1>
+
+                <a href="{{ route('medicalReports') }}?patient_id={{ $patient->id }}" class="px-4 py-2 bg-blue-600 text-white rounded">
+                    Add Report
+                </a>
+            </div>
+            <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                <thead class="bg-gray-100 border-b border-gray-300">
+                <tr>
+                    <th class="px-4 py-2 border text-center">Date</th>
+                    <th class="px-4 py-2 border text-center">Treatment</th>
+                    <th class="px-4 py-2 border text-center">Report Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($medicalReports as $report)
+                    <tr>
+                        <td class="px-4 py-2 border text-center">{{ $report->created_at->format('Y-m-d') }}</td>
+                        <td class="px-4 py-2 border text-center">
+                            {{ $report->treatment->name ?? 'N/A' }}
+                        </td>
+                        <td class="px-4 py-2 border text-center">{{ $report->report_details }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" class="px-4 py-2 border text-center text-gray-500">
+                            No medical reports found.
+                        </td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
         </div>
-        <table class="w-full text-sm text-left border-collapse border border-gray-300">
-            <thead class="bg-gray-100 border-b border-gray-300">
-            <tr>
-                <th class="px-4 py-2 border text-center">Date</th>
-                <th class="px-4 py-2 border text-center">Treatment</th>
-                <th class="px-4 py-2 border text-center">Report Details</th>
-            </tr>
-            </thead>
-            <tbody>
-            @forelse ($medicalReports as $report)
-                <tr>
-                    <td class="px-4 py-2 border text-center">{{ $report->created_at->format('Y-m-d') }}</td>
-                    <td class="px-4 py-2 border">{{ $report->report_details }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="2" class="px-4 py-2 border text-center">No medical reports found.</td>
-                </tr>
-            @endforelse
-            </tbody>
-        </table>
-
-        <!-- New Medical Report Form -->
-        <h3 class="text-xl font-semibold mt-6">Add New Medical Report</h3>
-        @if (session()->has('message'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                {{ session('message') }}
-            </div>
-        @endif
-
-        <form wire:submit.prevent="addMedicalReport" class="bg-white p-4 rounded shadow-md">
-            <div class="mb-4">
-                <textarea id="report" wire:model="report" rows="4" class="bg-gray-50 border border-gray-300 rounded-lg w-full"></textarea>
-                @error('report') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Report</button>
-        </form>
     </div>
     </main>
 </div>
+

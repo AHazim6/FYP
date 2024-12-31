@@ -11,34 +11,32 @@
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="p-6">
                     <form wire:submit.prevent="save">
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <input wire:model="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                            @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <!-- Name and Contact -->
+                        <div class="form-row grid grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input wire:model="name" type="text" id="name"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Phone Number</label>
+                                <input wire:model="contact" type="text" id="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                @error('contact') <span class="text-red-500">{{ $message }}</span> @enderror
+                            </div>
                         </div>
-
                         <!-- Email -->
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <div class="form-group mt-4">
+                            <label for="email">Email</label>
                             <input wire:model="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-
-                        <!-- Contact -->
-                        <div class="mb-4">
-                            <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
-                            <input wire:model="contact" type="text" id="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
-                            @error('contact') <span class="text-red-500">{{ $message }}</span> @enderror
-                        </div>
-
                         <!-- Password -->
-                        <div class="mb-4">
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <div class="form-group mt-4">
+                            <label for="password">Password</label>
                             <input wire:model="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
-
                         <!-- Confirm Password -->
                         <div class="mb-4">
                             <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>

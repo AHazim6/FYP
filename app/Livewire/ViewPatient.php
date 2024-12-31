@@ -23,23 +23,6 @@ class ViewPatient extends Component
         $this->patient = $patient;
     }
 
-    public function addMedicalReport(): void
-    {
-        $this->validate([
-            'report' => 'required|string|max:1000',
-        ]);
-
-        $this->patient->medicalReports()->create([
-            'report_details' => $this->report, // Use 'report_details' to match the table column
-            'created_by' => auth()->id(),
-        ]);
-
-        // Clear the report input field and refresh patient data
-        $this->report = '';
-        $this->patient->refresh();
-
-        session()->flash('message', 'Medical report added successfully!');
-    }
     public function addAppointment(): void
     {
         $this->validate([

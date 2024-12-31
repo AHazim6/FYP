@@ -16,6 +16,7 @@ class CreateMedicalReportsTable extends Migration
         Schema::create('medical_reports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
+            $table->foreignId('treatment_id')->constrained('treatments')->onDelete('cascade'); // Add treatment relationship
             $table->text('report_details');
             $table->timestamps();
         });

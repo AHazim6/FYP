@@ -50,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/patients/{patient}', ViewPatient::class)->name('patients.show');
     Route::get('/children/{patient}', \App\Livewire\ChildView::class)->name('child.show');
     Route::get('/appointments', AppointmentForm::class)->name('appointments');
+    Route::get('/medicalReports', \App\Livewire\AddMedicalReport::class)->name('medicalReports');
 });
 
 require __DIR__.'/auth.php';

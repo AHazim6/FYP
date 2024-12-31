@@ -21,18 +21,9 @@ class AddPatient extends Component
         'address' => 'required|max:255', // Add address validation
         'parent_name' => 'required|string|max:255',
     ];
-
-    // Real-time validation for each field when updated
-
-    /**
-     * @throws ValidationException
-     */
-
-    // Method to handle form submission and add a new patient
     public function save(): void
     {
         $this->validate();
-
 
         Patient::create([
             'name' => $this->name,
@@ -45,7 +36,7 @@ class AddPatient extends Component
         ]);
 
         // Reset fields after saving
-        $this->reset(['name', 'ic', 'gender', 'age', 'parent_name', 'phone', 'address']);
+        $this->reset();
         session()->flash('message', 'Patient added successfully.');
     }
 
