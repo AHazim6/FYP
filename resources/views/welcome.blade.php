@@ -19,14 +19,7 @@
         .navbar-nav .nav-link {
             margin: 0 10px;
         }
-        .banner-image {
-            width: 100%;
-            height: auto;
-        }
-        .intro-section {
-            padding: 40px 0;
-            text-align: center;
-        }
+
         .intro-section img {
             max-width: 300px;
             margin-bottom: 20px;
@@ -90,35 +83,69 @@
             width: 24px;
             margin-right: 10px;
         }
+        /* Hero Banner Styles */
+        .hero-banner {
+            position: relative;
+            background-image: url('{{ asset("build/assets/img/banner.jpg") }}'); /* Set banner image */
+            background-size: cover;
+            background-position: center;
+            height: 500px; /* Adjust height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for perfect centering */
+            text-align: center;
+            max-width: 600px; /* Restrict content width */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent black background */
+            border-radius: 8px; /* Rounded corners for the content box */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+        }
+
+        .banner-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff; /* White text */
+            margin-bottom: 20px;
+        }
+
+        .banner-content p {
+            font-size: 1.2rem;
+            color: #e0e0e0; /* Light gray text */
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .banner-content .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
 
 @include('layouts.navbar')
 
-<!-- Hero Banner -->
-<div class="container-fluid p-0">
-    <img src="{{ asset('build/assets/img/banner.jpg') }}" alt="Clinic Banner" class="banner-image">
-</div>
-
-<!-- Introduction Section -->
-<section class="container my-5 intro-section">
-    <div class="row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="{{ asset('build/assets/img/picture.jpg') }}" alt="Dentist Working" style="max-width: 80%; height: auto;">
-        </div>
-        <div class="col-md-6">
-            <p>
-                Our dental clinic is designed to provide compassionate and specialized care for children with autism.
-                Collaborating with Kulliyyah of Dentistry at IIUM Kuantan, Dentism focuses on patience, empathy, and
-                understanding, building trust with each child throughout their dental journey. We believe every child
-                deserves quality dental care in an environment celebrating their unique abilities, and we look forward
-                to partnering with parents to ensure their child's dental health.
-            </p>
-            <a href="/about" class="btn btn-success">Read More</a>
-        </div>
+<!-- Hero Banner with Intro Section -->
+<div class="hero-banner position-relative">
+    <div class="banner-content text-white text-center">
+        <h1>Welcome to Dentism</h1>
+        <p>
+            Our dental clinic is designed to provide compassionate and specialized care for children with autism.
+            Collaborating with Kulliyyah of Dentistry at IIUM Kuantan, Dentism focuses on patience, empathy, and
+            understanding to ensure your child's dental health.
+        </p>
+        <a href="/about" class="btn btn-success">Learn More</a>
     </div>
-</section>
+</div>
 
 <!-- Your First Visit Steps -->
 <section id="first-visit" class="py-5">

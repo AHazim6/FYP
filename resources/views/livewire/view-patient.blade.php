@@ -21,7 +21,7 @@
             </div>
         </div>
         <!-- Appointments -->
-        <div class="overflow-x-auto">
+        <div class="mt-8 overflow-x-auto">
             <!-- Header Row -->
             <div class="flex items-center justify-between mb-4">
                 <!-- Appointments List Heading -->

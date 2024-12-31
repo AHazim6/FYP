@@ -4,7 +4,7 @@
         @yield('content')
         <div>
             <div class="flex justify-between items-center px-2 sm:px-4 lg:px-6max-w-7xl py-6 lg:px-8">
-                <h1 class="text-2xl font-semibold mb-4">Medical Report</h1>
+                <h1 class="text-2xl font-semibold mb-4">Children Medical Report</h1>
                 {{ \Carbon\Carbon::now()->setTimezone('Asia/Kuala_Lumpur')->format('h:i A - d F, Y') }}
             </div>
             <!-- Patient Details -->

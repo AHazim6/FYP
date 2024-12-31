@@ -30,8 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // Role-based redirection
-        $user = Auth::user();
-        if (User::where('role', 'dentist')) {
+        if(auth()->user()->role === 'parent'){
             return redirect()->route('parent.dashboard');
         }
 

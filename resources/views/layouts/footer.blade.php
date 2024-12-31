@@ -18,9 +18,8 @@
                 <p>Phone: 6095705058</p>
                 <p>Fax: 6095705058</p>
                 <div class="social-icons">
-                    <a href="#"><img src="{{ asset('images/facebook-icon.png') }}" alt="Facebook"></a>
-                    <a href="#"><img src="{{ asset('images/instagram-icon.png') }}" alt="Instagram"></a>
-                    <a href="#"><img src="{{ asset('images/twitter-icon.png') }}" alt="Twitter"></a>
+                    <a href="https://www.facebook.com/IIUMDentistry/"><img src="{{ asset("build/assets/img/facebook.png") }}" alt="Facebook"></a>
+                    <a href="https://m.youtube.com/channel/UCxBwiw4OJxem9PAfgQDRYkg"><img src="{{ asset("build/assets/img/youtube.png") }}" alt="Instagram"></a>
                 </div>
             </div>
         </div>
