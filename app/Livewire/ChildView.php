@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Appointment;
 use App\Models\Patient;
 
 class ChildView extends Component
@@ -19,7 +18,8 @@ class ChildView extends Component
     public function render()
     {
         return view('livewire.child-view', [
-            'appointments' => $this->patient->appointments->sortByDesc('time'),
+            'appointments' => $this->patient->appointments->sortByDesc('time'), // Sort appointments by time
+            'medicalReports' => $this->patient->medicalReports->sortByDesc('created_at'), // Sort medical reports by creation date
         ])->layout('layouts.app');
     }
 }
