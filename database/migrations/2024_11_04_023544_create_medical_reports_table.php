@@ -18,6 +18,7 @@ class CreateMedicalReportsTable extends Migration
             $table->foreignId('patient_id')->constrained()->onDelete('cascade');
             $table->foreignId('treatment_id')->constrained('treatments')->onDelete('cascade'); // Add treatment relationship
             $table->text('report_details');
+            $table->text('simplified_report');
             $table->timestamps();
         });
     }

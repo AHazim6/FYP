@@ -11,6 +11,7 @@ use App\Livewire\AddDentist;
 use App\Livewire\AddPatient;
 use App\Livewire\DentistList;
 use App\Livewire\PatientList;
+use App\Livewire\ViewMedicalReport;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,6 +52,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/children/{patient}', \App\Livewire\ChildView::class)->name('child.show');
     Route::get('/appointments', AppointmentForm::class)->name('appointments');
     Route::get('/medicalReports', \App\Livewire\AddMedicalReport::class)->name('medicalReports');
+
+    // Route to view a single report
+    Route::get('/medical-reports/{report}/view', ViewMedicalReport::class)->name('medicalReports.view');
+
+// Route to delete a report
+    Route::delete('/medical-reports/{report}', function ($reportId) {
+        $report = App\Models\MedicalReport::findOrFail($reportId);
+        $report->delete();
+
+        return redirect()->back()->with('message', 'Report deleted successfully.');
+    })->name('medicalReports.destroy');
 });
 
 require __DIR__.'/auth.php';

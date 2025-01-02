@@ -12,6 +12,7 @@ class AddMedicalReport extends Component
     public $report = '';
     public $patient;
     public $patientId;
+    public $simplified_report;
     public $treatment_id;
     public $treatments;
 
@@ -27,23 +28,26 @@ class AddMedicalReport extends Component
         $this->validate([
             'treatment_id' => 'required|exists:treatments,id',
             'report' => 'required|string|max:1000',
+            'simplified_report' => 'required|string|max:1000',
         ]);
 
         try {
             $this->patient->medicalReports()->create([
                 'treatment_id' => $this->treatment_id,
                 'report_details' => $this->report,
+                'simplified_report' => $this->simplified_report,
                 'created_by' => auth()->id(),
             ]);
 
             session()->flash('message', 'Medical report added successfully!');
             $this->report = '';
             $this->treatment_id = null;
-            $this->patient->refresh();
+
         } catch (\Exception $e) {
             \Log::error('Error adding medical report: ' . $e->getMessage());
             session()->flash('error', 'An error occurred while adding the medical report.');
         }
+
     }
 
     public function render()

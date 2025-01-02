@@ -18,9 +18,9 @@
                     </div>
                 @endif
 
-                <form wire:submit.prevent="save" class="bg-white p-4 rounded shadow-md">
+                <form wire:submit.prevent="save">
                     <!-- Treatment Dropdown -->
-                    <div>
+                    <div class="mt-8">
                         <label for="treatment">Treatment</label>
                         <select wire:model="treatment_id" id="treatment" class="form-control">
                             <option value="">Select Treatment</option>
@@ -32,11 +32,31 @@
                             @error('treatment_id') <span class="text-red-500">{{ $message }}</span> @enderror
                         </select>
                     </div>
-                    <div class="mt-8 mb-4">
+                    <div class="mt-8">
+                        <label for="report">Treatment Report</label>
                         <textarea id="report" wire:model="report" rows="4" class="bg-gray-50 border border-gray-300 rounded-lg w-full"></textarea>
                         @error('report') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Report</button>
+                    <div class="mt-8">
+                        <label for="simplified_report">Simplified Treatment Report</label>
+                        <textarea id="simplified_report" wire:model="simplified_report" rows="4" class="bg-gray-50 border border-gray-300 rounded-lg w-full"></textarea>
+                        @error('simplified_report') <span class="text-red-500">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <!-- Close Button -->
+                        <button
+                            type="button"
+                            class="bg-red-600 text-white px-4 py-2 rounded"
+                            onclick="window.history.back();">
+                            Close
+                        </button>
+                        <!-- Add Report Button -->
+                        <button type="submit"
+                                wire:click="$refresh"
+                                class="bg-blue-500 text-white px-4 py-2 rounded">
+                                Add Report
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

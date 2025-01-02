@@ -82,7 +82,7 @@
                 <tr>
                     <th class="px-4 py-2 border text-center">Date</th>
                     <th class="px-4 py-2 border text-center">Treatment</th>
-                    <th class="px-4 py-2 border text-center">Report Details</th>
+                    <th class="px-4 py-2 border text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -92,7 +92,24 @@
                         <td class="px-4 py-2 border text-center">
                             {{ $report->treatment->name ?? 'N/A' }}
                         </td>
-                        <td class="px-4 py-2 border text-center">{{ $report->report_details }}</td>
+                        <td class="px-4 py-2 border">
+                            <div class="flex space-x-2">
+                                <!-- View Button -->
+                                <a
+                                    href="{{ route('medicalReports.view', $report->id) }}?patient_id={{ $patient->id }}"
+                                    class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600">
+                                    View
+                                </a>
+                                <!-- Delete Button -->
+                                <form action="{{ route('medicalReports.destroy', $report->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this report?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 @empty
                     <tr>
