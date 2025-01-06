@@ -10,26 +10,31 @@
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between p-4">
-                        <div class="relative w-full">
-                            <label>
-                                <input wire:model.defer="search"
-                                       wire:keydown.enter="applySearch"
-                                       type="text"
-                                       placeholder="Search"
-                                       class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-12 p-2"
-                                />
-                            </label>
+                    <!-- Search Input -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="block w-full">
+                            <input wire:model.defer="search"
+                                   wire:keydown.enter="applySearch"
+                                   type="text"
+                                   placeholder="Search by Name"
+                                   class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-12 p-2"
+                            />
                         </div>
+                    </div>
+                    <!-- Add Dentist -->
+                    <a href="{{ route('dentists.add') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
+                        Add Dentist
+                    </a>
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-black">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                        <thead class="bg-gray-100 border-b border-gray-300">
                         <tr>
                             <th class="w-1/4 px-4 py-2 border text-center">Name</th>
                             <th class="w-1/4 px-4 py-2 border text-center">Contact</th>
                             <th class="w-1/4 px-4 py-2 border text-center">Email</th>
-                            <th class="w-1/4 px-4 py-2 border text-center">password</th>
+                            <th class="w-1/4 px-4 py-2 border text-center">Password</th>
                             <th class="w-1/4 px-4 py-2 border text-center">Joined</th>
                             <th class="w-1/4 px-4 py-2 border text-center">Actions</th>
                         </tr>
@@ -46,7 +51,7 @@
                                     <button onclick="confirm('Are you sure to delete {{ $dentist->name }} ?') || event.stopImmediatePropagation()"
                                             wire:click="delete({{ $dentist->id }})"
                                             class="px-3 py-1 bg-red-500 text-white rounded">
-                                        X
+                                        Delete
                                     </button>
                                 </td>
                             </tr>

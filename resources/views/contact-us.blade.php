@@ -19,49 +19,6 @@
         .navbar-nav .nav-link {
             margin: 0 10px;
         }
-        .contact-form {
-            background-color: #f7f4e9;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-form label {
-            font-weight: bold;
-            color: #007b5e;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 15px;
-            width: 100%;
-        }
-
-        .contact-form input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        .contact-form button {
-            background-color: #007b5e;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .contact-form button:hover {
-            background-color: #005f46;
-        }
-
-        .contact-form .checkbox-group {
-            margin-bottom: 15px;
-        }
         .footer {
             background-color: #007b5e;
             color: white;
@@ -82,7 +39,6 @@
             width: 24px;
             margin-right: 10px;
         }
-        /* Ensure footer is always at the bottom */
         body {
             min-height: 100vh;
             display: flex;
@@ -91,14 +47,19 @@
         footer {
             margin-top: auto;
         }
-        .checkbox-label {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 15px; /* Space between items */
-            font-size: 14px;    /* Adjust font size if needed */
+        .embed-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
         }
-        .checkbox-label input[type="checkbox"] {
-            margin-right: 5px;  /* Space between checkbox and label */
+
+        .embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -106,31 +67,39 @@
 
 @include('layouts.navbar')
 
-<!-- Contact Form -->
-<div class="container text-center my-5">
-    <h1>Contact Us</h1>
-    <div class="contact-form mx-auto col-md-6">
-        <form action="{{ route('send.email') }}" method="post">
-            @csrf
-            <label>1. Email</label>
-            <input type="email" name="email" class="form-control mb-3" required>
+<!-- Contact Section -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Left Column: Contact Form -->
+        <div class="col-md-9">
+            <div class="embed-container">
+                <iframe
+                    src="https://forms.office.com/Pages/ResponsePage.aspx?id=9nbOGPSZf0WfYqzWXZuXd2Fi8AoXOF1Dv4gVGYVx6QNUNDcxTUI4OFU1WVJBRFkyOVlPUjREQk1NVC4u&embed=true"
+                    width="100%"
+                    height="500"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
 
-            <label>2. Name</label>
-            <input type="text" name="name" class="form-control mb-3" required>
-
-            <label for="subject">Subject:</label>
-            <select id="subject" name="subject">
-                <option value="Inquiry">Inquiry</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Complaint">Complaint</option>
-                <option value="Comment">Comment</option>
-            </select><br><br>
-
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-            <button type="submit" class="btn btn-success">Send</button>
-        </form>
+        <!-- Right Column: Location and Contact Information -->
+        <div class="col-md-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.8445471092177!2d103.3010253!3d3.8435280000000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c8bbad74b2f68b%3A0xe121337cc83a66c5!2sKulliyyah%20of%20Dentistry!5e0!3m2!1sen!2smy!4v1736180916300!5m2!1sen!2smy"
+                width="100%"
+                height="300"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+            <ul class="list-unstyled">
+                <li><strong>Address:</strong> Kulliyyah of Dentistry, IIUM Kuantan, Jalan Sultan Ahmad Shah, Bandar Indera Mahkota, 25200 Kuantan, Pahang Darul Makmur</li>
+                <li><strong>Email:</strong> <a href="mailto:dentistry@iium.edu.my">dentistry@iium.edu.my</a></li>
+                <li><strong>Phone:</strong> 609-570 5466 / 609-570 5580 (Fax)</li>
+                <li><strong>Dental Clinic:</strong> 609-570 5500 / 5537</li>
+                <li><strong>Cleft Clinic:</strong> 609-570 5537</li>
+            </ul>
+        </div>
     </div>
 </div>
 

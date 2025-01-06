@@ -61,7 +61,14 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 flex justify-end">
+                    <div class="mt-4 flex justify-end gap-2">
+                        <!-- Close Button -->
+                        <button
+                            type="button"
+                            class="bg-red-600 text-white px-4 py-2 rounded"
+                            onclick="window.history.back();">
+                            Close
+                        </button>
                         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
                             Add Appointment
                         </button>

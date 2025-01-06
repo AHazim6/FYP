@@ -21,7 +21,9 @@
                     <tbody>
                     @forelse ($appointments as $appointment)
                         <tr>
-                            <td class="px-4 py-2 border text-center">{{ $appointment->time }}</td>
+                            <td class="px-4 py-2 border text-center">
+                                {{ \Carbon\Carbon::parse($appointment->time)->format('d/m/Y H:i') }}
+                            </td>
                             <td class="px-4 py-2 border text-center">{{ $appointment->dentist->name ?? 'N/A' }}</td>
                             <td class="px-4 py-2 border text-center">{{ $appointment->treatment->name ?? 'N/A' }}</td>
                         </tr>
@@ -49,7 +51,7 @@
                     <tbody>
                     @forelse ($medicalReports as $report)
                         <tr>
-                            <td class="px-4 py-2 border text-center">{{ $report->created_at->format('Y-m-d') }}</td>
+                            <td class="px-4 py-2 border text-center">{{ \Carbon\Carbon::parse($report->created_at)->format('d/m/Y') }}</td>
                             <td class="px-4 py-2 border text-center">{{ $report->treatment->name ?? 'N/A' }}</td>
                             <td class="px-4 py-2 border text-center">{{ $report->simplified_report ?? 'N/A' }}</td>
                         </tr>

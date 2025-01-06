@@ -17,8 +17,8 @@
                 <h1 class="header-font text-lg font-bold">My Children</h1>
             </div>
             <!-- My Children Table -->
-            <table class="w-full text-sm text-left text-gray-500 dark:text-black">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                <thead class="bg-gray-100 border-b border-gray-300">
                 <tr>
                     <th class="w-1/5 px-4 py-2 border text-center">Name</th>
                     <th class="w-1/5 px-4 py-2 border text-center">IC Number</th>
@@ -35,7 +35,7 @@
                         <td class="px-4 py-2 border text-center">
                             <a href="{{ route('child.show', ['patient' => $child->id]) }}"
                                class="px-3 py-1 bg-blue-500 text-white rounded">
-                                View
+                                View Report
                             </a>
                         </td>
                     </tr>

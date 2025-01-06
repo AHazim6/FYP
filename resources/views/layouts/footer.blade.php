@@ -14,14 +14,20 @@
             </div>
             <div class="col-md-4">
                 <h5>Contact Us</h5>
-                <p>Email: dentisty@iium.edu.my</p>
-                <p>Phone: 6095705058</p>
-                <p>Fax: 6095705058</p>
+                <a href="mailto:dentistry@iium.edu.my">dentistry@iium.edu.my</a>
+                <p>Phone: 609-570 5500</p>
+                <p>Fax: 609-570 5466</p>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/IIUMDentistry/"><img src="{{ asset("build/assets/img/facebook.png") }}" alt="Facebook"></a>
                     <a href="https://m.youtube.com/channel/UCxBwiw4OJxem9PAfgQDRYkg"><img src="{{ asset("build/assets/img/youtube.png") }}" alt="Instagram"></a>
                 </div>
             </div>
         </div>
+        <!-- Copyright -->
+        <div class="mt-4 text-center p-3" >
+            © 2025 Copyright:
+            <a class="text-body" href="https://mdbootstrap.com/">Hazim.Fadila</a>
+        </div>
+        <!-- Copyright -->
     </div>
 </footer>

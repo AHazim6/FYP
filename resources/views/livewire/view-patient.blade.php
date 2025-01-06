@@ -32,14 +32,14 @@
                 </a>
             </div>
             <!-- Appointments Table -->
-            <table class="w-full text-sm text-left text-gray-500 dark:text-black">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                <thead class="bg-gray-100 border-b border-gray-300">
                 <tr>
-                    <th class="w-1/5 px-4 py-2 border text-center">Patient</th>
-                    <th class="w-1/5 px-4 py-2 border text-center">Dentist</th>
-                    <th class="w-1/5 px-4 py-2 border text-center">Treatment</th>
-                    <th class="w-1/5 px-4 py-2 border text-center">Time</th>
-                    <th class="w-1/5 px-4 py-2 border text-center">Actions</th>
+                    <th class="px-4 py-2 border text-center">Patient</th>
+                    <th class="px-4 py-2 border text-center">Dentist</th>
+                    <th class="px-4 py-2 border text-center">Treatment</th>
+                    <th class="px-4 py-2 border text-center">Time</th>
+                    <th class="px-4 py-2 border text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,9 @@
                         <td class="px-4 py-2 border text-center">{{ $appointment->patient->name ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border text-center">{{ $appointment->dentist->name ?? 'N/A' }}</td>
                         <td class="px-4 py-2 border text-center">{{ $appointment->treatment->name ?? 'N/A' }}</td>
-                        <td class="px-4 py-2 border text-center">{{ $appointment->time }}</td>
+                        <td class="px-4 py-2 border text-center">
+                            {{ \Carbon\Carbon::parse($appointment->time)->format('d/m/Y H:i') }}
+                        </td>
                         <td class="px-4 py-2 border text-center">
                             <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this appointment?');">
                                 @csrf
@@ -88,12 +90,12 @@
                 <tbody>
                 @forelse ($medicalReports as $report)
                     <tr>
-                        <td class="px-4 py-2 border text-center">{{ $report->created_at->format('Y-m-d') }}</td>
+                        <td class="px-4 py-2 border text-center">{{ \Carbon\Carbon::parse($report->created_at)->format('d/m/Y') }}</td>
                         <td class="px-4 py-2 border text-center">
                             {{ $report->treatment->name ?? 'N/A' }}
                         </td>
-                        <td class="px-4 py-2 border">
-                            <div class="flex space-x-2">
+                        <td class="px-4 py-2 border text-center">
+                            <div class="flex justify-center space-x-2">
                                 <!-- View Button -->
                                 <a
                                     href="{{ route('medicalReports.view', $report->id) }}?patient_id={{ $patient->id }}"

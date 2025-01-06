@@ -51,6 +51,17 @@
                         </a>
                     </div>
                     <!-- Appointments Table -->
+                    <div class="mb-4">
+                        <!-- Search Bar -->
+                        <input
+                            type="text"
+                            id="search"
+                            placeholder="Search appointments..."
+                            class="px-4 py-2 border rounded-md w-1/2"
+                            oninput="filterTable()"
+                        >
+                    </div>
+
                     <table class="w-full text-sm text-left text-gray-500 dark:text-black">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -61,32 +72,57 @@
                             <th class="w-1/5 px-4 py-2 border text-center">Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="appointmentsTable">
                         @forelse($appointments as $appointment)
-                            <tr>
-                                <td class="px-4 py-2 border text-center">{{ $appointment->patient->name ?? 'N/A' }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $appointment->dentist->name ?? 'N/A' }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $appointment->treatment->name ?? 'N/A' }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $appointment->time }}</td>
-                                <td class="px-4 py-2 border text-center">
-                                    <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this appointment?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                            @if(auth()->user()->role === 'admin' || (auth()->user()->role === 'dentist' && $appointment->dentist_id === auth()->user()->id))
+                                <tr>
+                                    <td class="px-4 py-2 border text-center">{{ $appointment->patient->name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $appointment->dentist->name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $appointment->treatment->name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-2 border text-center">
+                                        {{ \Carbon\Carbon::parse($appointment->time)->format('d/m/Y H:i') }}
+                                    </td>
+                                    <td class="px-4 py-2 border text-center">
+                                        <!-- Delete Button -->
+                                        <form
+                                            action="{{ route('appointments.destroy', $appointment->id) }}"
+                                            method="POST"
+                                            class="inline"
+                                            onsubmit="return confirm('Are you sure you want to delete this appointment?');"
+                                        >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endif
                         @empty
                             <tr>
-                                <td colspan="5" class="px-4 py-2 border text-center text-gray-500">
+                                <td colspan="6" class="px-4 py-2 border text-center text-gray-500">
                                     No appointments found.
                                 </td>
                             </tr>
                         @endforelse
                         </tbody>
                     </table>
+
+                    <!-- JavaScript for Search Filtering -->
+                    <script>
+                        function filterTable() {
+                            const searchInput = document.getElementById('search').value.toLowerCase();
+                            const rows = document.querySelectorAll('#appointmentsTable tr');
+
+                            rows.forEach(row => {
+                                const cells = row.querySelectorAll('td');
+                                const rowText = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
+                                row.style.display = rowText.includes(searchInput) ? '' : 'none';
+                            });
+                        }
+                    </script>
+
                 </div>
 
             </div>

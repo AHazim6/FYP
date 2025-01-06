@@ -5,7 +5,7 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ auth()->user()->role === 'parent' ? route('parent.dashboard') : route('dashboard') }}">
                             <img src="{{ asset('build/assets/img/logo.png') }}" alt="My Logo" class="img-fluid" style="height: 60px;" />
                         </a>
                     </div>
