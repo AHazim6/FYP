@@ -14,20 +14,29 @@ class DashboardController extends Controller
 
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
     {
-        // Fetch all dentists and count other items
-        $dentists = User::where('role', 'dentist')->get();  // Fetch all users with the role of dentist
+        // Fetch all dentists
+        $dentists = User::where('role', 'dentist')->get();
 
-        // Fetch appointments
-        $appointments = Appointment::with(['patient', 'dentist', 'treatment'])->get();
+        // Fetch appointments and sort them by time (latest first)
+        $appointments = Appointment::with(['patient', 'dentist', 'treatment'])
+            ->orderBy('time', 'desc')
+            ->get();
 
-        // You can also add additional data like counts for Patients and Appointments if needed
-        $totalDentists = User::where('role', 'dentist')->count(); // Count all dentists
+        // Count totals
+        $totalDentists = User::where('role', 'dentist')->count();
         $totalPatients = Patient::count();
         $totalAppointments = Appointment::count();
 
         // Return view with data
-        return view('dashboard', compact('dentists', 'totalDentists', 'totalPatients', 'totalAppointments','appointments'));
+        return view('dashboard', compact(
+            'dentists',
+            'totalDentists',
+            'totalPatients',
+            'totalAppointments',
+            'appointments'
+        ));
     }
+
     public function edit(): void
     {
         $this->showEditModal = True;

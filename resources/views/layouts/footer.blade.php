@@ -26,7 +26,7 @@
         <!-- Copyright -->
         <div class="mt-4 text-center p-3" >
             © 2025 Copyright:
-            <a class="text-body" href="https://mdbootstrap.com/">Hazim.Fadila</a>
+            <a class="text-body" href="https://mdbootstrap.com/">Dentism.com</a>
         </div>
         <!-- Copyright -->
     </div>
