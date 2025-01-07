@@ -62,8 +62,8 @@
                         >
                     </div>
 
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-black">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <table class="w-full text-sm text-left border-collapse border border-gray-300">
+                        <thead class="bg-gray-100 border-b border-gray-300">
                         <tr>
                             <th class="w-1/5 px-4 py-2 border text-center">Patient</th>
                             <th class="w-1/5 px-4 py-2 border text-center">Dentist</th>
